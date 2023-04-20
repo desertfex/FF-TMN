@@ -1,0 +1,63 @@
+base_lr: 0.1
+batch_size: 4
+config: ./config/nturgbd-cross-subject/ntu-xsub.yaml
+device: 0
+eval_interval: 5
+feeder: feeders.NTU
+ignore_weights: []
+log_interval: 100
+lr_args:
+  max_epoch: 70
+  policy: Cosine
+model: model.stigcn.Model
+model_args:
+  dropout: 0.5
+  graph: graph.ntu_rgb_d.Graph
+  graph_args:
+    labeling_mode: spatial
+  layers:
+  - 3
+  - 3
+  - 3
+  num_class: 60
+  num_person: 2
+  num_point: 25
+model_saved_name: ''
+nesterov: true
+num_epoch: 70
+num_worker: 0
+only_train_epoch: 0
+only_train_part: false
+optimizer: SGD
+phase: train
+print_log: true
+print_model: true
+processor: ClassAux
+save_interval: 1
+save_score: false
+seed: 1
+show_topk:
+- 1
+- 5
+start_epoch: 0
+step:
+- 20
+- 40
+- 60
+test_batch_size: 64
+test_feeder_args:
+  data_path: ./data/ntu/xsub/test_data_joint.npy
+  label_path: ./data/ntu/xsub/test_label.pkl
+train_feeder_args:
+  data_path: ./data/ntu/xsub/train_data_joint.npy
+  debug: false
+  label_path: ./data/ntu/xsub/train_label.pkl
+  normalization: false
+  random_choose: false
+  random_move: false
+  random_shift: false
+  window_size: -1
+warm_up_epoch: 0
+weight_decay: 0.0005
+weights: null
+work_dir: ./logs/ntu-xsub
